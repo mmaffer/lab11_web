@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}">Listado de Cursos</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<div th:replace="layout/layout :: layout(~{::section})">
+    <section>
+        <h2 th:text="${titulo}">Listado de Cursos</h2>
+        <div class="actions">
+            <a class="btn" th:href="@{/cursos/export/pdf}">Exportar PDF</a>
+            <a class="btn" th:href="@{/cursos/export/xls}">Exportar XLS</a>
+        </div>
+        <div sec:authorize="hasRole('ADMIN')">
+            <a class="btn" th:href="@{/cursos/form}">Nuevo Curso</a>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Nombre</th>
+                <th>Créditos</th>
+                <th>Estado</th>
+                <th sec:authorize="hasRole('ADMIN')">Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${cursos}">
+                <td th:text="${c.id}"></td>
+                <td th:text="${c.codigo}"></td>
+                <td th:text="${c.nombre}"></td>
+                <td th:text="${c.creditos}"></td>
+                <td th:text="${c.estado} ? 'Activo' : 'Inactivo'"></td>
+                <td sec:authorize="hasRole('ADMIN')">
+                    <a class="btn btn-danger" th:href="@{'/cursos/eliminar/' + ${c.id}}">Eliminar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+</body>
+</html>

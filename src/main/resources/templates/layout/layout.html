@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo} ?: 'Spring Boot Demo'"></title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/cursos/listar}">Cursos</a>
+        <span class="spacer"></span>
+        <span sec:authorize="isAuthenticated()">Bienvenido, <span sec:authentication="name"></span></span>
+        <span sec:authorize="hasRole('ADMIN')" class="badge">ADMIN</span>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+    </nav>
+</header>
+
+<!-- Fragment de layout parametrizable -->
+<main th:fragment="layout(content)">
+    <div th:replace="${content}"></div>
+</main>
+
+<footer>
+    <img alt="Logo" th:src="@{/images/logo.svg}" width="64" height="64"/>
+    <small>Demo Seguridad Spring</small>
+    </footer>
+
+</body>
+</html>

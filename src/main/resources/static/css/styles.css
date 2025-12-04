@@ -1,0 +1,15 @@
+html, body { background: #ffffff; }
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #111; }
+header nav { display: flex; gap: 12px; align-items: center; padding: 10px; background: #0f766e; color: #fff; }
+header nav a { color: #fff; text-decoration: none; }
+.spacer { flex: 1; }
+.badge { background: #1e293b; color: #fff; padding: 2px 6px; border-radius: 4px; }
+main { padding: 20px; }
+table { border-collapse: collapse; width: 100%; background: #fff; }
+th, td { border: 1px solid #ddd; padding: 8px; }
+th { background-color: #f2f2f2; }
+.btn { padding: 6px 10px; background: #2563eb; color: #fff; border-radius: 4px; }
+.btn-danger { background: #dc2626; }
+.login { max-width: 400px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
+.login form { display: grid; gap: 8px; }
+footer { display: flex; gap: 10px; align-items: center; padding: 10px 20px; border-top: 1px solid #eee; }
